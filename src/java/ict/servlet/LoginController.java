@@ -47,7 +47,7 @@ public class LoginController extends HttpServlet {
         String dbPassword = "root";
         String dbUrl = "";
         db = new UserDB (dbUrl, dbUser, dbPassword);
-        db.createUserInfoTable();
+        //db.createUserInfoTable();
     }  
 
     
@@ -124,24 +124,29 @@ public class LoginController extends HttpServlet {
             throws IOException, ServletException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        
+        String type = request.getParameter("loginType");
+        System.out.println(type);
         String targetURL;
-        boolean isValid =db.isValidUser(username, password);
-        System.out.print(isValid);
-       // if("abc".equals(username) && "123".equals(password)){
+        boolean isValid =db.isValidUser(username, password, type);
         if(isValid){
             HttpSession session = request.getSession(true);
             UserInfo bean = new UserInfo();
             bean.setUsername(username);
-            
+            targetURL = "student.jsp";
             session.setAttribute("userInfo", bean);
-            targetURL = "welcome.jsp";
+            if(type.equals("student")){
+                targetURL = "student.jsp";
+            }else if(type.equals("teacher")){
+                targetURL = "teacher.jsp";
+            }else if(type.equals("admin")){
+                targetURL = "administrator.jsp";
+            }
             
         }else{
             targetURL = "loginError.jsp";
         }
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/" + targetURL);
+        rd = getServletContext().getRequestDispatcher("/"+ targetURL);
         rd.forward(request, response);
     }
     

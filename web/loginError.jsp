@@ -14,6 +14,6 @@
     <body>
         <p>InCorrect Password</p>
         <p>
-            <% out.println("<a href=\"" + request.getContextPath()+ "/main\">Login again</a>"); %>
+            <% out.println("<a href=\"" + request.getContextPath()+ "\">Login again</a>"); %>
     </body>
 </html>

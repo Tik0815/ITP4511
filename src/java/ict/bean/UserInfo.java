@@ -13,12 +13,19 @@ import java.io.Serializable;
  * @author Tik0815
  */
 public class UserInfo implements Serializable {
+    //private String userId;
     private String username;
     private String password;
     
     public UserInfo(){
         
     }
+//    public String getUserId(){
+//        return username;
+//    }
+//    public void setUserId(String id){
+//        this.userId = id;
+//    }
     public String getUsername(){
         return username;
     }

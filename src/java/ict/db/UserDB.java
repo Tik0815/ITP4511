@@ -93,15 +93,26 @@ public class UserDB {
         }
         return isSuccess;
     }
-    public boolean isValidUser(String user, String pwd){
+    public boolean isValidUser(String user, String pwd, String type){
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
         
         boolean isValid = false;
         try{
-            System.out.print("hello");
+            String preQueryStatement = null;
+            switch(type){
+                case "student":
+                    preQueryStatement = "SELECT * FROM STUDENT WHERE studentId=? AND PASSWORD=?";
+                    break;
+                case "teacher":
+                    preQueryStatement = "SELECT * FROM TEACHER WHERE teacherAc=? AND PASSWORD=?";
+                    break;
+                case "admin":
+                    preQueryStatement = "SELECT * FROM ADMINISTRATOR WHERE administratorAc=? AND PASSWORD=?";
+                    break;
+            }
+            
             cnnct = getConnection();
-            String preQueryStatement = "SELECT * FROM USERINFO WHERE USERNAME=? AND PASSWORD=?";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             pStmnt.setString(1, user);
             pStmnt.setString(2, pwd);
@@ -109,7 +120,7 @@ public class UserDB {
             rs = pStmnt.executeQuery();
             if(rs.next()){
                 isValid = true;
-            }
+            } 
         }catch(SQLException ex){
             while(ex != null){
                 ex.printStackTrace();
