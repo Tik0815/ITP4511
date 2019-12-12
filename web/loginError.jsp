@@ -12,8 +12,10 @@
         <title>Login Error</title>
     </head>
     <body>
+        <jsp:include page="header.jsp"/>
         <p>InCorrect Password</p>
         <p>
             <% out.println("<a href=\"" + request.getContextPath()+ "\">Login again</a>"); %>
+        <jsp:include page="footer.jsp" />
     </body>
 </html>

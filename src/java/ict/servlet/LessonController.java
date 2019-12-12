@@ -7,6 +7,7 @@ package ict.servlet;
 
 import ict.bean.Attendance;
 import ict.bean.Lesson;
+import ict.bean.Subject;
 import ict.db.LessonDB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -49,10 +50,10 @@ public class LessonController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet PhoneController</title>");            
+            out.println("<title>Servlet LessonController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet PhoneController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet LessonController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -80,6 +81,7 @@ public class LessonController extends HttpServlet {
             subject = request.getParameter("subject");
             attendList = lessonDb.getLessons(user, subject);
             request.setAttribute("attendList", attendList);
+            request.setAttribute("subject", subject);
             RequestDispatcher rd;
             rd = getServletContext().getRequestDispatcher("/lesson.jsp");
             rd.forward(request, response);

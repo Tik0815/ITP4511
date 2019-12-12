@@ -1,1 +1,2 @@
-<h1 align="center">This is our header</h1>
+<b align=""><img src="img/IVE_logo.png" width="100px" ><br>Attendance Monitoring System</b>
+<hr>

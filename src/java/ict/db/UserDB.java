@@ -5,6 +5,7 @@
  */
 package ict.db;
 
+import ict.bean.Student;
 import java.io.IOException;
 import java.sql.*;
 /**
@@ -130,5 +131,33 @@ public class UserDB {
             ex.printStackTrace();
         }
         return isValid;
+    }
+    public Student queryStudentById(String id){
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        
+        Student stuBean = null;
+        try{
+            cnnct = getConnection();
+            String preQueryStatement = "SELECT * FROM Student WHERE studentId=?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, id);
+            ResultSet rs = null;
+            rs = pStmnt.executeQuery();
+            if(rs.next()){
+                stuBean = new Student();
+                stuBean.setFirstName(rs.getString("firstName"));
+                stuBean.setLastName(rs.getString("lastName"));
+                stuBean.setStudentClass(rs.getString("class"));
+            }
+        }catch(SQLException ex){
+            while(ex != null){
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        return stuBean;
     }
 }

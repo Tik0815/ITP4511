@@ -14,10 +14,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lesson Page</title>
     </head>
+        
     <body>
-        <b>Your attendance:</b><br>
+        <jsp:include page="header.jsp" />
+        <b>Your attendance of <% out.println(request.getAttribute("subject"));%> :</b><br>
         <%
                     ArrayList<Attendance> attendList = (ArrayList<Attendance> )request.getAttribute("attendList");
+                    
                     out.println(attendList.size());
                     out.println("<table border='1'>");
                     
@@ -25,15 +28,29 @@
                     for (int i = 0; i < attendList.size(); i++) {
                         Attendance a = attendList.get(i);
                         Lesson l = a.getLesson();
-                        out.println("<tr>");
+                        out.println("<tr class='"+a.getIsAttend()+"'>");
                         out.println("<td>" + l.getDate() + "</td>");
                         out.println("");
-                        out.println("<td>" + a.getIsAttend() + "</td>");
+                        if(a.getIsAttend())
+                            out.println("<td width=20 align='center'> " + "✔" + "</td>");
+                        else
+                            out.println("<td width=20>" + "" + "</td>");
                         out.println("</tr>");
 
                     }
                     out.println("</table>");
 %> 
-        
+        <jsp:include page="footer.jsp" />
+        <script>
+                var t = document.getElementsByClassName("true");
+                for (var i=0;i<t.length; i++) {
+                    t[i].style.backgroundColor = "#C5FFC7";
+                }
+                var f = document.getElementsByClassName("false");
+                for (var i=0;i<f.length; i++) {
+                    f[i].style.backgroundColor = "#FFCAC5";
+                }
+                
+        </script>
     </body>
 </html>

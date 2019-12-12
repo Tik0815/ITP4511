@@ -12,8 +12,13 @@
         <title>Student Page</title>
     </head>
     <body>
+        <jsp:include page="header.jsp" />
         <jsp:useBean id="userInfo" class="ict.bean.UserInfo" scope="session"/>
-        <b> Hello Student, <jsp:getProperty name="userInfo" property="username" /> </b>
+        <jsp:useBean id="studentBean" class="ict.bean.Student" scope="session"/>
+        <b> Hello Student, <jsp:getProperty name="userInfo" property="username" />  
+        <jsp:getProperty name="studentBean" property="firstName" /> 
+        <jsp:getProperty name="studentBean" property="lastName" /> ,
+        <jsp:getProperty name="studentBean" property="studentClass" /></b>
         <p/>
         Welcome!
         
@@ -25,5 +30,6 @@
             <input type="hidden" name="action" value="logout">
             <input type="submit" value="Logout" name="logoutButton">
         </form>
+        <jsp:include page="footer.jsp" />
     </body>
 </html>

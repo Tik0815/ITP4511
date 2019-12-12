@@ -1,3 +1,4 @@
-<p align="center">
+<hr>
+<b align="left">
     Last updated: <%= new java.util.Date() %>
-</p>
+</b>

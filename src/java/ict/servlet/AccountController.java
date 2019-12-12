@@ -2,7 +2,6 @@ package ict.servlet;
 // import library
 // map the servlet to url, brandController
 
-import ict.bean.Student;
 import ict.db.SubjectDB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,10 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "SubjectController", urlPatterns = {"/SubjectController"})
+@WebServlet(name = "AccountController", urlPatterns = {"/AccountController"})
 
 
-public class SubjectController extends HttpServlet {
+public class AccountController extends HttpServlet {
   private SubjectDB subjectDb;
   public void init() {
         String dbUser = "jdbc:mysql://localhost:3306/ITP4511_DB";
