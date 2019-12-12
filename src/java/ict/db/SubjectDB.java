@@ -79,21 +79,21 @@ public class SubjectDB {
     
     public void addSubject(Subject s) {    this.subjects.add(s);  }
     
-    public ArrayList<Phone> getPhonesByBrand(String brand) {
-
-        ArrayList<Phone> phones = new ArrayList<Phone>();
-        if (brand.equalsIgnoreCase("HTC")) {
-          phones.add(new Phone("HTC smart", "img/htcsmartsmall.png", 200));
-          phones.add(new Phone("HTC One X", "img/htconexsmall.png", 200));
-        } else if (brand.equalsIgnoreCase("IPHONE")) {
-          phones.add(new Phone("Iphone 4", "img/iphone4small.png", 99));
-          phones.add(new Phone("Iphone 4s", "img/iphone4ssmall.png", 199));
-          phones.add(new Phone("Iphone 5", "img/iphone5small.png", 299));
-        } else if (brand.equalsIgnoreCase("SAMSUNG")) {
-          phones.add(new Phone("galaxy S3", "img/s3.png", 299));
-          phones.add(new Phone("galaxy S4", "img/s4.png", 399));
-        }
-        return phones;
-    }
+//    public ArrayList<Phone> getPhonesByBrand(String brand) {
+//
+//        ArrayList<Phone> phones = new ArrayList<Phone>();
+//        if (brand.equalsIgnoreCase("HTC")) {
+//          phones.add(new Phone("HTC smart", "img/htcsmartsmall.png", 200));
+//          phones.add(new Phone("HTC One X", "img/htconexsmall.png", 200));
+//        } else if (brand.equalsIgnoreCase("IPHONE")) {
+//          phones.add(new Phone("Iphone 4", "img/iphone4small.png", 99));
+//          phones.add(new Phone("Iphone 4s", "img/iphone4ssmall.png", 199));
+//          phones.add(new Phone("Iphone 5", "img/iphone5small.png", 299));
+//        } else if (brand.equalsIgnoreCase("SAMSUNG")) {
+//          phones.add(new Phone("galaxy S3", "img/s3.png", 299));
+//          phones.add(new Phone("galaxy S4", "img/s4.png", 399));
+//        }
+//        return phones;
+//    }
   }
 

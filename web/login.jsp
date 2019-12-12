@@ -27,6 +27,7 @@
         </script>
     </head>
     <body>
+        <jsp:include page="header.jsp"/>
         <p>Attendance Monitoring System</p>
         <form method="post" action="main" name="login">
             <input type="hidden" name="action" value="authenticate"/>
@@ -61,5 +62,6 @@
                 </tr>
             </table>
         </form>
+        <jsp:include page="footer.jsp" />
     </body>
 </html>
