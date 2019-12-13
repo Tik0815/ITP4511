@@ -3,19 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/web/administrator.jsp</file>
-            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/db/BrandDB.java</file>
-            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/web/teacher.jsp</file>
-            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/servlet/LoginController.java</file>
-            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/web/login.jsp</file>
-            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/db/UserDB.java</file>
-            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/web/student.jsp</file>
-=======
-            <file>file:/C:/Users/user/Documents/GitHub/ITP4511/src/java/ict/db/BrandDB.java</file>
-            <file>file:/C:/Users/user/Documents/GitHub/ITP4511/src/java/ict/db/UserDB.java</file>
+            <file>file:/C:/Users/user/Documents/GitHub/ITP4511/src/java/ict/db/SubjectDB.java</file>
             <file>file:/C:/Users/user/Documents/GitHub/ITP4511/web/login.jsp</file>
->>>>>>> cbf600c8e1fb8c771e8a3e55a04c47af8f204920
+            <file>file:/C:/Users/user/Documents/GitHub/ITP4511/web/student.jsp</file>
+            <file>file:/C:/Users/user/Documents/GitHub/ITP4511/web/administrator.jsp</file>
+            <file>file:/C:/Users/user/Documents/GitHub/ITP4511/src/java/ict/servlet/SubjectController.java</file>
         </group>
     </open-files>
 </project-private>

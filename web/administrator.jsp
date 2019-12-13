@@ -16,10 +16,12 @@
     <body>
         <jsp:include page="header.jsp" />
         <jsp:useBean id="userInfo" class="ict.bean.UserInfo" scope="session"/>
-        <b> Hello Admin, <jsp:getProperty name="userInfo" property="username" /> </b>
+        <b> Hello Admin, <jsp:getProperty name="userInfo" property="username" /> </b><br>
         
-        <a href="AccountController?action=list&user=<jsp:getProperty name="userInfo" property="username"/>" >Show Accounts</a><br/>
-        <a href="AccountController?action=list&user=<jsp:getProperty name="userInfo" property="username"/>" >Show Subject</a><br/>
+        <a href="AccountController?action=create&user=<jsp:getProperty name="userInfo" property="username"/>" >Create New User</a><br/>
+        <a href="AccountController?action=register&user=<jsp:getProperty name="userInfo" property="username"/>" >Register student according to class</a><br/>
+        <a href="AccountController?action=modify&user=<jsp:getProperty name="userInfo" property="username"/>" >Modify account information</a><br/>
+        <a href="AccountController?action=role&user=<jsp:getProperty name="userInfo" property="username"/>" >Manage the user role</a><br/>
         <hr>
         
         <form method="post" action ="main">

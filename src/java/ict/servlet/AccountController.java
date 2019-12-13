@@ -2,7 +2,9 @@ package ict.servlet;
 // import library
 // map the servlet to url, brandController
 
-import ict.db.SubjectDB;
+import ict.db.AdminDB;
+import ict.db.StudentDB;
+import ict.db.TeacherDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -17,24 +19,37 @@ import javax.servlet.http.HttpServletResponse;
 
 
 public class AccountController extends HttpServlet {
-  private SubjectDB subjectDb;
+  private AdminDB adminDB;
+  private StudentDB studentDB;
+  private TeacherDB teacherDB;
   public void init() {
         String dbUser = "jdbc:mysql://localhost:3306/ITP4511_DB";
         String dbPassword = "root";
         String dbUrl = "";
-        subjectDb = new SubjectDB(dbUrl, dbUser, dbPassword);
+        adminDB = new AdminDB(dbUrl, dbUser, dbPassword);
+        studentDB = new StudentDB(dbUrl, dbUser, dbPassword);
+        teacherDB = new TeacherDB(dbUrl, dbUser, dbPassword);
   }
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
    String action = request.getParameter("action");
    String user = request.getParameter("user"); 
-   if ("list".equalsIgnoreCase(action)) {
-     ArrayList subjects = subjectDb.getSubjects(user);
-     request.setAttribute("user", user);
-     request.setAttribute("subjects", subjects);
+   if ("create".equalsIgnoreCase(action)) {
      RequestDispatcher rd = this.getServletContext()
-      .getRequestDispatcher("/subject.jsp");
+      .getRequestDispatcher("/create.jsp");
      rd.forward(request, response);         
-   }  else{
+   } else if ("register".equalsIgnoreCase(action)){
+       RequestDispatcher rd = this.getServletContext()
+      .getRequestDispatcher("/register.jsp");
+     rd.forward(request, response);   
+   } else if ("modify".equalsIgnoreCase(action)){
+       RequestDispatcher rd = this.getServletContext()
+      .getRequestDispatcher("/modify.jsp");
+     rd.forward(request, response);   
+   } else if ("role".equalsIgnoreCase(action)){
+       RequestDispatcher rd = this.getServletContext()
+      .getRequestDispatcher("/role.jsp");
+     rd.forward(request, response);   
+   } else {
         PrintWriter out = response.getWriter();
          out.println("NO such action :" +action);
    }
