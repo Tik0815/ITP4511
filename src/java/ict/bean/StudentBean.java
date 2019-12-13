@@ -12,14 +12,15 @@ import java.io.Serializable;
  *
  * @author Tik0815
  */
-public class Student implements Serializable {
-    //private String userId;
+public class StudentBean implements Serializable {
+    private String id;
+    private String pw;
     private String firstName;
     private String lastName;
     private String studentClass;
     private UserInfo info;
     
-    public Student(){
+    public StudentBean(){
         
     }
     public UserInfo getInfo(){
@@ -27,6 +28,19 @@ public class Student implements Serializable {
     }
     public void setInfo(UserInfo info){
         this.info = info;
+    }
+    
+    public String getId(){
+        return id;
+    }
+    public void setId(String id){
+        this.id = id;
+    }
+    public String getPw(){
+        return pw;
+    }
+    public void setPw(String pw){
+        this.pw = pw;
     }
     public String getFirstName(){
         return firstName;

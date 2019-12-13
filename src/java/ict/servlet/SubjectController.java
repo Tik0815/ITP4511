@@ -2,7 +2,7 @@ package ict.servlet;
 // import library
 // map the servlet to url, brandController
 
-import ict.bean.Student;
+import ict.bean.StudentBean;
 import ict.db.SubjectDB;
 import java.io.IOException;
 import java.io.PrintWriter;

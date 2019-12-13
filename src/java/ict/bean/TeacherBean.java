@@ -2,7 +2,7 @@ package ict.bean;
 
 import java.io.Serializable;
 
-public class Teacher implements Serializable {
+public class TeacherBean implements Serializable {
     
     private String id;
     private String ac;
@@ -13,11 +13,11 @@ public class Teacher implements Serializable {
     private String email;
  
     
-    public Teacher(){}  
+    public TeacherBean(){}  
     public String getId(){
         return id;
     }
-    public void setID(String id){
+    public void setId(String id){
         this.id = id;
     }   
     public String getAc(){

@@ -6,6 +6,10 @@
         <title>Modify account information</title>
     </head>
     <body>
-        
+        <jsp:include page="header.jsp" />
+            <a href="UpdateDeleteAdmin?action=list"/>Modify Administrator</a><br/>
+            <a href="UpdateDeleteStudent?action=list"/>Modify Student</a><br/>
+            <a href="UpdateDeleteTeacher?action=list"/>Modify Teacher</a><br/>
+        <jsp:include page="footer.jsp" />       
     </body>
 </html>

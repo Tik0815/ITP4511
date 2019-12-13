@@ -1,6 +1,7 @@
 package ict.db;
 
-import ict.bean.Subject;
+import ict.bean.SubjectBean;
+import ict.bean.TeacherBean;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class TeacherDB {
-    private ArrayList<Subject> subjects = null;
+    private ArrayList<SubjectBean> subjects = null;
     private String url = "";
     private String username = "";
     private String password = "";
@@ -31,37 +32,37 @@ public class TeacherDB {
        // return DriverManager.getConnection(url, username, password);
        return DriverManager.getConnection("jdbc:mysql://localhost:3306/ITP4511_DB", "root", "");
     }
-//    public void fillSubject() {
-//        Connection cnnct = null;
-//        PreparedStatement pStmnt = null;
-//        preQueryStatement = "SELECT * FROM STUDENT_HAS_SUBJECT WHERE studentId=?";
-//        subjects.add(new Brand("HTC"));
-//        subjects.add(new Brand("IPHONE"));
-//        subjects.add(new Brand("SAMSUNG"));
-//    }
-    public ArrayList getSubjects(String user) {
+    
+    public ArrayList queryTeacher(){
+        ArrayList<TeacherBean> list = new ArrayList();
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
-        subjects.clear();
+        
+        TeacherBean tb = null;
         try{
-            String preQueryStatement = "SELECT * FROM STUDENT_HAS_SUBJECT WHERE studentId=?";
             cnnct = getConnection();
+            String preQueryStatement = "SELECT * FROM teacher";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
-            pStmnt.setString(1, user);
             ResultSet rs = null;
-                rs = pStmnt.executeQuery();
-                while(rs.next()){
-                    System.out.println(rs.getString(1)+" "+rs.getString(2));
-                    //subjects.add(new Subject(rs.getString(subjectID));
-                    String preQueryStatement_getSubject = "SELECT * FROM SUBJECT WHERE subjectId=?";
-                    PreparedStatement pStmnt_getSubject = cnnct.prepareStatement(preQueryStatement_getSubject);
-                    pStmnt_getSubject.setString(1, rs.getString("subjectId"));
-                    ResultSet rs_subject = null;
-                        rs_subject = pStmnt_getSubject.executeQuery();
-                        System.out.println(rs.getString(1)+" "+rs.getString(2));
-                        if(rs_subject.next())
-                            subjects.add(new Subject(rs_subject.getString("subject"), rs.getString("subjectId")));
-                } 
+            rs = pStmnt.executeQuery();
+            while(rs.next()){
+                tb = new TeacherBean();
+                tb.setId(rs.getString("teacherId"));
+                tb.setAc(rs.getString("teacherAc"));
+                tb.setPw(rs.getString("password"));
+                tb.setFirstName(rs.getString("firstName"));
+                tb.setLastName(rs.getString("lastName"));
+                tb.setPhone(rs.getString("phoneNumber"));
+                tb.setEmail(rs.getString("emailAddress"));
+                System.out.print("Teacher ID: " + rs.getString("teacherId") + "\n");
+                System.out.print("Teacher Account: " + rs.getString("teacherAc") + "\n");
+                System.out.print("Password: " + rs.getString("password") + "\n");
+                System.out.print("FirstName: " + rs.getString("firstName") + "\n");
+                System.out.print("LastName: " + rs.getString("lastName") + "\n");
+                System.out.print("Phone Number: " + rs.getString("phoneNumber") + "\n");
+                System.out.print("Email Address: " + rs.getString("emailAddress") + "\n");
+                list.add(tb);
+            }
         }catch(SQLException ex){
             while(ex != null){
                 ex.printStackTrace();
@@ -69,29 +70,35 @@ public class TeacherDB {
             }
         }catch(IOException ex){
             ex.printStackTrace();
-        }    
-//        subjects.add(new Brand("HTC"));
-//        subjects.add(new Brand("IPHONE"));
-//        subjects.add(new Brand("SAMSUNG"));
-        return this.subjects;
+        }
+        return list;
     }
     
-    public void addSubject(Subject s) {    this.subjects.add(s);  }
+    public boolean delTeacher(String id){
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+        try{
+            cnnct = getConnection();
+            String preQueryStatement = "DELETE FROM teacher WHERE teacherId=?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, id);
+            int rowCount = pStmnt.executeUpdate();
+            if(rowCount >= 1){
+                isSuccess = true;
+            }
+            pStmnt.close();
+            cnnct.close();
+        }catch(SQLException ex){
+            while(ex != null){
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        return isSuccess;
+    }
+ 
+    }
     
-//    public ArrayList<Phone> getPhonesByBrand(String brand) {
-//
-//        ArrayList<Phone> phones = new ArrayList<Phone>();
-//        if (brand.equalsIgnoreCase("HTC")) {
-//          phones.add(new Phone("HTC smart", "img/htcsmartsmall.png", 200));
-//          phones.add(new Phone("HTC One X", "img/htconexsmall.png", 200));
-//        } else if (brand.equalsIgnoreCase("IPHONE")) {
-//          phones.add(new Phone("Iphone 4", "img/iphone4small.png", 99));
-//          phones.add(new Phone("Iphone 4s", "img/iphone4ssmall.png", 199));
-//          phones.add(new Phone("Iphone 5", "img/iphone5small.png", 299));
-//        } else if (brand.equalsIgnoreCase("SAMSUNG")) {
-//          phones.add(new Phone("galaxy S3", "img/s3.png", 299));
-//          phones.add(new Phone("galaxy S4", "img/s4.png", 399));
-//        }
-//        return phones;
-//    }
-  }

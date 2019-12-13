@@ -1,6 +1,7 @@
 package ict.db;
 
-import ict.bean.Subject;
+import ict.bean.StudentBean;
+import ict.bean.SubjectBean;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class StudentDB {
-    private ArrayList<Subject> subjects = null;
+    private ArrayList<SubjectBean> subjects = null;
     private String url = "";
     private String username = "";
     private String password = "";
@@ -30,6 +31,69 @@ public class StudentDB {
         
        // return DriverManager.getConnection(url, username, password);
        return DriverManager.getConnection("jdbc:mysql://localhost:3306/ITP4511_DB", "root", "");
+    }
+    
+    public ArrayList queryStudent(){
+        ArrayList<StudentBean> list = new ArrayList();
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        
+        StudentBean sb = null;
+        try{
+            cnnct = getConnection();
+            String preQueryStatement = "SELECT * FROM student";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            ResultSet rs = null;
+            rs = pStmnt.executeQuery();
+            while(rs.next()){
+                sb = new StudentBean();
+                sb.setId(rs.getString("studentId"));
+                sb.setPw(rs.getString("password")); 
+                sb.setFirstName(rs.getString("firstName"));
+                sb.setLastName(rs.getString("lastName"));
+                sb.setStudentClass(rs.getString("class"));
+                System.out.print("Student ID: " + rs.getString("studentId") + "\n");
+                System.out.print("Password: " + rs.getString("password") + "\n");
+                System.out.print("FirstName: " + rs.getString("firstName") + "\n");
+                System.out.print("LastName: " + rs.getString("lastName") + "\n");
+                System.out.print("Class: " + rs.getString("class") + "\n");
+                list.add(sb);
+            }
+        }catch(SQLException ex){
+            while(ex != null){
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        return list;
+    }
+    
+    public boolean delStudent(String id){
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+        try{
+            cnnct = getConnection();
+            String preQueryStatement = "DELETE FROM student WHERE studentId=?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, id);
+            int rowCount = pStmnt.executeUpdate();
+            if(rowCount >= 1){
+                isSuccess = true;
+            }
+            pStmnt.close();
+            cnnct.close();
+        }catch(SQLException ex){
+            while(ex != null){
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        return isSuccess;
     }
 //    public void fillSubject() {
 //        Connection cnnct = null;
@@ -60,7 +124,7 @@ public class StudentDB {
                         rs_subject = pStmnt_getSubject.executeQuery();
                         System.out.println(rs.getString(1)+" "+rs.getString(2));
                         if(rs_subject.next())
-                            subjects.add(new Subject(rs_subject.getString("subject"), rs.getString("subjectId")));
+                            subjects.add(new SubjectBean(rs_subject.getString("subject"), rs.getString("subjectId")));
                 } 
         }catch(SQLException ex){
             while(ex != null){
@@ -76,7 +140,7 @@ public class StudentDB {
         return this.subjects;
     }
     
-    public void addSubject(Subject s) {    this.subjects.add(s);  }
+    public void addSubject(SubjectBean s) {    this.subjects.add(s);  }
     
 //    public ArrayList<Phone> getPhonesByBrand(String brand) {
 //

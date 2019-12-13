@@ -1,6 +1,6 @@
 package ict.db;
 
-import ict.bean.Subject;
+import ict.bean.SubjectBean;
 import ict.bean.Phone;
 import java.io.IOException;
 import java.sql.Connection;
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class SubjectDB {
-    private ArrayList<Subject> subjects = null;
+    private ArrayList<SubjectBean> subjects = null;
     private String url = "";
     private String username = "";
     private String password = "";
@@ -61,7 +61,7 @@ public class SubjectDB {
                         rs_subject = pStmnt_getSubject.executeQuery();
                         System.out.println(rs.getString(1)+" "+rs.getString(2));
                         if(rs_subject.next())
-                            subjects.add(new Subject(rs_subject.getString("subject"), rs.getString("subjectId")));
+                            subjects.add(new SubjectBean(rs_subject.getString("subject"), rs.getString("subjectId")));
                 } 
         }catch(SQLException ex){
             while(ex != null){
@@ -77,7 +77,7 @@ public class SubjectDB {
         return this.subjects;
     }
     
-    public void addSubject(Subject s) {    this.subjects.add(s);  }
+    public void addSubject(SubjectBean s) {    this.subjects.add(s);  }
     
 //    public ArrayList<Phone> getPhonesByBrand(String brand) {
 //

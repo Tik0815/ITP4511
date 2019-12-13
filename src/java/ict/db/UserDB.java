@@ -5,7 +5,7 @@
  */
 package ict.db;
 
-import ict.bean.Student;
+import ict.bean.StudentBean;
 import java.io.IOException;
 import java.sql.*;
 /**
@@ -132,11 +132,11 @@ public class UserDB {
         }
         return isValid;
     }
-    public Student queryStudentById(String id){
+    public StudentBean queryStudentById(String id){
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
         
-        Student stuBean = null;
+        StudentBean stuBean = null;
         try{
             cnnct = getConnection();
             String preQueryStatement = "SELECT * FROM Student WHERE studentId=?";
@@ -145,7 +145,7 @@ public class UserDB {
             ResultSet rs = null;
             rs = pStmnt.executeQuery();
             if(rs.next()){
-                stuBean = new Student();
+                stuBean = new StudentBean();
                 stuBean.setFirstName(rs.getString("firstName"));
                 stuBean.setLastName(rs.getString("lastName"));
                 stuBean.setStudentClass(rs.getString("class"));

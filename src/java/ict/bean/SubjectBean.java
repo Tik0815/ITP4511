@@ -2,10 +2,10 @@ package ict.bean;
  
 import java.io.Serializable;
 
-public class Subject implements Serializable{
+public class SubjectBean implements Serializable{
    private String name;
    private String id;
-   public Subject(String name, String id) {
+   public SubjectBean(String name, String id) {
        this.name = name;
        this.id = id;
    }

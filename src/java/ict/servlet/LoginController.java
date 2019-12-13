@@ -5,7 +5,7 @@
  */
 package ict.servlet;
 
-import ict.bean.Student;
+import ict.bean.StudentBean;
 import ict.bean.UserInfo;
 import ict.db.UserDB;
 import java.io.IOException;
@@ -137,7 +137,7 @@ public class LoginController extends HttpServlet {
             session.setAttribute("userInfo", bean);
             if(type.equals("student")){
                 targetURL = "student.jsp";
-                Student stuBean = db.queryStudentById(username);
+                StudentBean stuBean = db.queryStudentById(username);
                 stuBean.setInfo(bean);
                 request.setAttribute("studentBean", stuBean);
             }else if(type.equals("teacher")){

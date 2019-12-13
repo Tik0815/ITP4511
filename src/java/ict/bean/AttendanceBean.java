@@ -4,11 +4,11 @@ import java.io.Serializable;
 import java.util.Date;
 import ict.bean.Lesson;
 
-public class Attendance implements Serializable{
+public class AttendanceBean implements Serializable{
    private String id;
    private Lesson lesson;
    private Boolean isAttend;
-   public Attendance(String id, Lesson lesson, Boolean isAttend) {
+   public AttendanceBean(String id, Lesson lesson, Boolean isAttend) {
        this.id = id;
        this.lesson = lesson;
        this.isAttend = isAttend;

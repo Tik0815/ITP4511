@@ -1,8 +1,8 @@
 package ict.db;
 
-import ict.bean.Subject;
+import ict.bean.SubjectBean;
 import ict.bean.Lesson;
-import ict.bean.Attendance;
+import ict.bean.AttendanceBean;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class LessonDB {
-    private ArrayList<Attendance> lessons = null;
+    private ArrayList<AttendanceBean> lessons = null;
     private String url = "";
     private String username = "";
     private String password = "";
@@ -74,7 +74,7 @@ public class LessonDB {
                         if(rs_lesson.absolute(i)){
                             date = rs_lesson.getString("date");
                             Lesson lesson = new Lesson(lessonId, date);
-                            lessons.add(new Attendance(attendId, lesson, isAttend));
+                            lessons.add(new AttendanceBean(attendId, lesson, isAttend));
                         }
                         i++;
                 } 

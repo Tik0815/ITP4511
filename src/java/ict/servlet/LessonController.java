@@ -5,9 +5,9 @@
  */
 package ict.servlet;
 
-import ict.bean.Attendance;
+import ict.bean.AttendanceBean;
 import ict.bean.Lesson;
-import ict.bean.Subject;
+import ict.bean.SubjectBean;
 import ict.db.LessonDB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -76,7 +76,7 @@ public class LessonController extends HttpServlet {
         if ("list".equalsIgnoreCase(action)) {
             String user = null;
             String subject = null;
-            ArrayList<Attendance> attendList = null;
+            ArrayList<AttendanceBean> attendList = null;
             user = request.getParameter("user");
             subject = request.getParameter("subject");
             attendList = lessonDb.getLessons(user, subject);
