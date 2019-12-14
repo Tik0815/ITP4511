@@ -1,47 +1,37 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ict.bean;
 
-import java.beans.*;
 import java.io.Serializable;
 
-/**
- *
- * @author Tik0815
- */
-public class Student implements Serializable {
+public class TeacherBean implements Serializable {
+    
     private String id;
+    private String ac;
     private String pw;
     private String firstName;
     private String lastName;
-    private String studentClass;
-    private UserInfo info;
+    private String phone;
+    private String email;
+ 
     
-    public Student(){
-        
-    }
-    public UserInfo getInfo(){
-        return info;
-    }
-    public void setInfo(UserInfo info){
-        this.info = info;
-    }
-    
+    public TeacherBean(){}  
     public String getId(){
         return id;
     }
     public void setId(String id){
         this.id = id;
+    }   
+    public String getAc(){
+        return ac;
     }
+    public void setAc(String ac){
+        this.ac = ac;
+    }   
     public String getPw(){
         return pw;
     }
     public void setPw(String pw){
         this.pw = pw;
-    }
+    }    
     public String getFirstName(){
         return firstName;
     }
@@ -54,10 +44,16 @@ public class Student implements Serializable {
     public void setLastName(String lastName){
         this.lastName = lastName;
     }
-    public String getStudentClass(){
-        return studentClass;
+    public String getPhone(){
+        return phone;
     }
-    public void setStudentClass(String studentClass){
-        this.studentClass = studentClass;
+    public void setPhone(String phone){
+        this.phone = phone;
     }
+    public String getEmail(){
+        return email;
+    }
+    public void setEmail(String email){
+        this.email = email;
+    }  
 }

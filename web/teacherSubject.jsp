@@ -12,13 +12,13 @@
         <title>All Subjects</title>
     </head>
     <body>
-        <jsp:include page="header.jsp" />
+        <jsp:include page="header.jsp"/>
         <jsp:useBean id="userInfo" class="ict.bean.UserInfo" scope="session"/>
         <jsp:useBean id="teacherBean" class="ict.bean.Teacher" scope="session"/>
         <b> Hello Teacher, <jsp:getProperty name="userInfo" property="username" /> </b>
-          
+        
         <jsp:getProperty name="teacherBean" property="firstName" /> 
-        <jsp:getProperty name="teacherBean" property="lastName" /> ,
+        <jsp:getProperty name="teacherBean" property="lastName" />
         <br><b> Your Subject: </b><p/>
         
         <jsp:useBean id="subjects" scope="request"
@@ -27,7 +27,7 @@
         <% 
             for (int i = 0; i < subjects.size(); i++){
                 Subject s = subjects.get(i);
-                out.println("<a href=\"getLessons?action=list&subject=" +
+                out.println("<a href=\"getLessons?action=teacherList&subject=" +
                         s.getId()+ "\">" + s.getId() + " - " + s.getName() + "</a><br/>");
                 
             }

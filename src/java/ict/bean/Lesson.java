@@ -6,10 +6,15 @@ public class Lesson implements Serializable{
 
     private String id;
     private String date;
-    public Lesson(String id, String date) {
+    private String stuClass;
+    public Lesson(String id, String date, String stuClass) {
         this.id = id;
         this.date = date;
+        this.stuClass = stuClass;
     } 
+    public Lesson(){
+        
+    }
     
     public String getId(){
       return id;
@@ -22,5 +27,11 @@ public class Lesson implements Serializable{
     }
     public void setDate(String date){
         this.date = date;
+    }
+    public String getStuClass(){
+        return stuClass;
+    }
+    public void setStuClass(String stuClass){
+        this.stuClass = stuClass;
     }
 }

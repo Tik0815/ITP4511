@@ -1,4 +1,4 @@
-package ict.servlet;
+ package ict.servlet;
 // import library
 // map the servlet to url, brandController
 

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class LessonDB {
-    private ArrayList<Attendance> lessons = null;
+    private ArrayList lessons = null;
     private String url = "";
     private String username = "";
     private String password = "";
@@ -42,10 +42,10 @@ public class LessonDB {
 //        subjects.add(new Brand("IPHONE"));
 //        subjects.add(new Brand("SAMSUNG"));
 //    }
-    public ArrayList getLessons(String user, String subject) {
+    public ArrayList getAttendance(String user, String subject) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
-        lessons.clear();
+        lessons = new ArrayList<Attendance>();
         try{
             String preQueryStatement = "SELECT * FROM Attendance WHERE studentId=?";
             cnnct = getConnection();
@@ -72,10 +72,12 @@ public class LessonDB {
                     ResultSet rs_lesson = null;
                         rs_lesson = pStmnt_getLesson.executeQuery();
                         String date;
+                        String stuClass;
                         //if(rs_lesson.next()){
                         if(rs_lesson.absolute(i)){
                             date = rs_lesson.getString("date");
-                            Lesson lesson = new Lesson(lessonId, date);
+                            stuClass = rs_lesson.getString("class"); 
+                            Lesson lesson = new Lesson(lessonId, date, stuClass);
                             lessons.add(new Attendance(attendId, lesson, isAttend));
                         }
                         i++;
@@ -93,24 +95,70 @@ public class LessonDB {
 //        subjects.add(new Brand("SAMSUNG"));
         return this.lessons;
     }
-    
-//    public void addSubject(Subject s) {    this.subjects.add(s);  }
-//    
-//    public ArrayList<Phone> getPhonesByBrand(String brand) {
-//
-//        ArrayList<Phone> phones = new ArrayList<Phone>();
-//        if (brand.equalsIgnoreCase("HTC")) {
-//          phones.add(new Phone("HTC smart", "img/htcsmartsmall.png", 200));
-//          phones.add(new Phone("HTC One X", "img/htconexsmall.png", 200));
-//        } else if (brand.equalsIgnoreCase("IPHONE")) {
-//          phones.add(new Phone("Iphone 4", "img/iphone4small.png", 99));
-//          phones.add(new Phone("Iphone 4s", "img/iphone4ssmall.png", 199));
-//          phones.add(new Phone("Iphone 5", "img/iphone5small.png", 299));
-//        } else if (brand.equalsIgnoreCase("SAMSUNG")) {
-//          phones.add(new Phone("galaxy S3", "img/s3.png", 299));
-//          phones.add(new Phone("galaxy S4", "img/s4.png", 399));
-//        }
-//        return phones;
-//    }
+    public ArrayList getTeacherLessons(String user, String subject) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        lessons = new ArrayList<Lesson>();
+        try{
+            String preQueryStatement = "SELECT * FROM Lesson WHERE teacherId=? AND subjectId=?";
+            cnnct = getConnection();
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            
+            pStmnt.setString(1, user);
+            pStmnt.setString(2, subject);
+            System.out.println(pStmnt);
+            ResultSet rs = null;
+                rs = pStmnt.executeQuery();
+                int i = 1;
+                while(rs.next()){
+                    
+                    String date = rs.getString("date");
+                    String lessonId = rs.getString("lessonId");
+                    String stuClass = rs.getString("class");
+                    Lesson lesson = new Lesson(lessonId, date, stuClass);
+                    lessons.add(lesson);
+                        
+                } 
+        }catch(SQLException ex){
+            while(ex != null){
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }    
+        return this.lessons;
+    }
+    public Lesson queryLessonById(String id) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        Lesson lesson = new Lesson();
+        try{
+            String preQueryStatement = "SELECT * FROM Lesson WHERE lessonId=?";
+            cnnct = getConnection();
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            
+            pStmnt.setString(1, id);
+            System.out.println(pStmnt);
+            ResultSet rs = null;
+                rs = pStmnt.executeQuery();
+                if(rs.next()){
+                    
+                    String date = rs.getString("date");
+                    String lessonId = rs.getString("lessonId");
+                    String stuClass = rs.getString("class");
+                    lesson = new Lesson(lessonId, date, stuClass);
+                        
+                } 
+        }catch(SQLException ex){
+            while(ex != null){
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }    
+        return lesson;
+    }
   }
 

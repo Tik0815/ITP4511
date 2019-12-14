@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ict.servlet;
+// import library
+// map the servlet to url, brandController
 
-import ict.bean.Attendance;
 import ict.bean.Lesson;
-import ict.bean.Student;
-import ict.bean.Subject;
-import ict.bean.Teacher;
-import ict.bean.UserInfo;
+import ict.db.AttendanceDB;
 import ict.db.LessonDB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,12 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Tik0815
- */
-@WebServlet(name = "LessonController", urlPatterns = {"/getLessons"})
-public class LessonController extends HttpServlet {
+@WebServlet(name = "AttendanceController", urlPatterns = {"/AttendanceController"})
+public class AttendanceController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,12 +27,14 @@ public class LessonController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private AttendanceDB attendanceDb;
     private LessonDB lessonDb;
-    public void init(){
-        String dbUser = "jdbc:mysql://localhost:3306/ITP4511_DB";
-        String dbPassword = "root";
-        String dbUrl = "";
-        lessonDb = new LessonDB(dbUrl, dbUser, dbPassword);
+    public void init() {
+          String dbUser = "jdbc:mysql://localhost:3306/ITP4511_DB";
+          String dbPassword = "root";
+          String dbUrl = "";
+          attendanceDb = new AttendanceDB(dbUrl, dbUser, dbPassword);
+          lessonDb = new LessonDB(dbUrl, dbUser, dbPassword);
     }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -75,37 +66,21 @@ public class LessonController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
-            
+        String lessonId = request.getParameter("id");
         if ("list".equalsIgnoreCase(action)) {
-            String user = null;
-            String subject = null;
-            String stuClass = null;
-            Student stuBean = (Student) request.getSession().getAttribute("studentBean");
-            ArrayList<Attendance> attendList = null;
-            
-            user = stuBean.getInfo().getUsername();
-            subject = request.getParameter("subject");
-            attendList = lessonDb.getAttendance(user, subject);
-            request.setAttribute("attendList", attendList);
-            request.setAttribute("subject", subject);
-            RequestDispatcher rd;
-            rd = getServletContext().getRequestDispatcher("/lesson.jsp");
-            rd.forward(request, response);
-        }else if("teacherList".equalsIgnoreCase(action)) {
-            String teacherId = null;
-            String subject = null;
-            
-            Teacher teaBean = (Teacher) request.getSession().getAttribute("teacherBean");
-            teacherId = teaBean.getUserId();
-            subject = request.getParameter("subject");
-            ArrayList<Lesson> teacherLessons = lessonDb.getTeacherLessons(teacherId, subject);
-            System.out.println(teacherLessons.size());
-            request.setAttribute("lessonList", teacherLessons);
-            request.setAttribute("subject", subject);
-            RequestDispatcher rd;
-            rd = getServletContext().getRequestDispatcher("/teacherLesson.jsp");
-            rd.forward(request, response);
+
+             ArrayList studentsAttendance = attendanceDb.getStudentsAttendance(lessonId);
+             Lesson lesson = lessonDb.queryLessonById(lessonId);
+             request.setAttribute("studentsAttendance", studentsAttendance);
+             request.setAttribute("lesson", lesson);
+             RequestDispatcher rd;
+            rd = getServletContext().getRequestDispatcher("/checkAttendance.jsp");
+            rd.forward(request, response);               
+        }  else{
+             PrintWriter out = response.getWriter();
+              out.println("NO such action :" +action);
         }
+        
     }
 
     /**
@@ -119,7 +94,7 @@ public class LessonController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        doGet(request, response);
     }
 
     /**

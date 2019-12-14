@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/web/administrator.jsp</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/servlet/LessonController.java</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/web/teacherSubject.jsp</file>
@@ -32,6 +33,11 @@
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/db/UserDB.java</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/servlet/PhoneController.java</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/bean/Brand.java</file>
+=======
+            <file>file:/C:/Users/user/Documents/GitHub/ITP4511/web/editAdmin.jsp</file>
+            <file>file:/C:/Users/user/Documents/GitHub/ITP4511/src/java/ict/db/AdminDB.java</file>
+            <file>file:/C:/Users/user/Documents/GitHub/ITP4511/src/java/ict/servlet/UpdateDeleteAdmin.java</file>
+>>>>>>> 273974d48309b4ffe91f468c01fc5fde40ab485f
         </group>
     </open-files>
 </project-private>

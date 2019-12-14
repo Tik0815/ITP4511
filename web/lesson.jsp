@@ -17,6 +17,14 @@
         
     <body>
         <jsp:include page="header.jsp" />
+        <jsp:useBean id="userInfo" class="ict.bean.UserInfo" scope="session"/>
+        <jsp:useBean id="studentBean" class="ict.bean.Student" scope="session"/>
+        <b> Hello Student, <jsp:getProperty name="userInfo" property="username" /> </b>
+          
+        <jsp:getProperty name="studentBean" property="firstName" /> 
+        <jsp:getProperty name="studentBean" property="lastName" /> ,
+        <jsp:getProperty name="studentBean" property="studentClass" />
+        <br>
         <b>Your attendance of <% out.println(request.getAttribute("subject"));%> :</b><br>
         <%
                     ArrayList<Attendance> attendList = (ArrayList<Attendance> )request.getAttribute("attendList");

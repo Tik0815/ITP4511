@@ -7,6 +7,7 @@ package ict.db;
 
 import ict.bean.Student;
 import ict.bean.Teacher;
+import ict.bean.Student;
 import java.io.IOException;
 import java.sql.*;
 /**

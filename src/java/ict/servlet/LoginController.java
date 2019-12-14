@@ -7,6 +7,7 @@ package ict.servlet;
 
 import ict.bean.Student;
 import ict.bean.Teacher;
+import ict.bean.Student;
 import ict.bean.UserInfo;
 import ict.db.UserDB;
 import java.io.IOException;
