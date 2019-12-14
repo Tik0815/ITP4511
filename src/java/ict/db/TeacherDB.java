@@ -99,6 +99,80 @@ public class TeacherDB {
         }
         return isSuccess;
     }
+    
+    public TeacherBean queryTeacherById(String id){        
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;        
+        TeacherBean te = null;
+        try{
+            cnnct = getConnection();
+            String preQueryStatement = "SELECT * FROM teacher WHERE teacherId=?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, id);
+            ResultSet rs = null;
+            rs = pStmnt.executeQuery();
+            if (rs.next()) {
+                te = new TeacherBean();
+                te.setId(rs.getString(1));
+                te.setAc(rs.getString(2));
+                te.setPw(rs.getString(3));
+                te.setFirstName(rs.getString(4));
+                te.setLastName(rs.getString(5));
+                te.setPhone(rs.getString(6));
+                te.setEmail(rs.getString(7));
+            }
+            pStmnt.close();
+            cnnct.close();
+        }catch(SQLException ex){
+            while(ex != null){
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        return te;
+    }        
+        
+    public int editTeacher(TeacherBean te) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        try {           
+            cnnct = getConnection();
+            String preQueryStatement = "UPDATE teacher SET teacherAc=? ,password=? ,firstName=?, lastName=?, phoneNumber=?, emailAddress=? WHERE teacherId=?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, te.getAc());
+            pStmnt.setString(2, te.getPw());
+            pStmnt.setString(3, te.getFirstName());
+            pStmnt.setString(4, te.getLastName());
+            pStmnt.setString(5, te.getPhone());
+            pStmnt.setString(6, te.getEmail());
+            pStmnt.setString(7, te.getId());
+            int rs = pStmnt.executeUpdate();
+            return rs;
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pStmnt != null) {
+                try {
+                    pStmnt.close();
+                } catch (SQLException e) {
+                }
+            }
+            if (cnnct != null) {
+                try {
+                    cnnct.close();
+                } catch (SQLException sqlEx) {
+                }
+            }
+        }
+        return 0;
+    }
  
     }
     

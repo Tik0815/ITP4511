@@ -58,7 +58,7 @@ public class UpdateDeleteAdmin extends HttpServlet {
                     adminDB.delAdmin(id);
                     response.sendRedirect("UpdateDeleteAdmin?action=list");
                 }
-            }else if("getEditCustomer".equalsIgnoreCase(action)){
+            }else if("getEdit".equalsIgnoreCase(action)){
                 String id = request.getParameter("id");
                 if (id != null) {                
                     AdminBean admin = adminDB.queryAdminById(id);                                       

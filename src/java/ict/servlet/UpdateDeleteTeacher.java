@@ -58,24 +58,35 @@ public class UpdateDeleteTeacher extends HttpServlet {
                     teacherDB.delTeacher(id);
                     response.sendRedirect("UpdateDeleteTeacher?action=list");
                 }
-            }else if("getEditCustomer".equalsIgnoreCase(action)){
+            }else if("getEdit".equalsIgnoreCase(action)){
                 String id = request.getParameter("id");
-                if (id != null) {
-                    out.print("adc");
-                    // call  query db to get retrieve for a customer with the given id
-                    
-                    //ArrayList<CustomerBean> customer = db.queryCustById(id);
-                    
-                    // set the customer as attribute in request scope
-                    //request.setAttribute("cus", customer);
-                                        
-                    // forward the result to the editCustomer.jsp   
+                if (id != null) {                
+                    TeacherBean teacher = teacherDB.queryTeacherById(id);                                       
                     RequestDispatcher rd;
-                    rd = getServletContext().getRequestDispatcher("/editCustomer.jsp");
-                    rd.forward(request, response);
-                    
+                    rd = getServletContext().getRequestDispatcher("/editTeacher.jsp");
+                    request.setAttribute("tea", teacher);
+                    rd.forward(request, response);                   
                 }    
-
+            }else if ("edit".equalsIgnoreCase(action)) { 
+                String id = request.getParameter("teacherID");
+                String ac = request.getParameter("teacherAC");
+                String pw = request.getParameter("teacherPW");
+                String fname = request.getParameter("teacherFname");
+                String lname = request.getParameter("teacherLname");
+                String phone = request.getParameter("teacherPhone");
+                String email = request.getParameter("teacherEmail");
+                TeacherBean t = teacherDB.queryTeacherById(id);              
+                t.setId(id);
+                t.setAc(ac);
+                t.setPw(pw);
+                t.setFirstName(fname);
+                t.setLastName(lname);
+                t.setPhone(phone);
+                t.setEmail(email);
+                teacherDB.editTeacher(t);
+                
+              response.sendRedirect("UpdateDeleteTeacher?action=list");
+             
             }else{
                 
                 out.println("No such action!!!");

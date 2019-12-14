@@ -70,6 +70,77 @@ public class StudentDB {
         return list;
     }
     
+        public StudentBean queryStudentById(String id){        
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;        
+        StudentBean st = null;
+        try{
+            cnnct = getConnection();
+            String preQueryStatement = "SELECT * FROM student WHERE studentId=?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, id);
+            ResultSet rs = null;
+            rs = pStmnt.executeQuery();
+            if (rs.next()) {
+                st = new StudentBean();
+                st.setId(rs.getString(1));
+                st.setPw(rs.getString(2));
+                st.setFirstName(rs.getString(3));
+                st.setLastName(rs.getString(4));
+                st.setStudentClass(rs.getString(5));
+            }
+            pStmnt.close();
+            cnnct.close();
+        }catch(SQLException ex){
+            while(ex != null){
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        return st;
+    }
+        
+    public int editStudent(StudentBean st) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        try {           
+            cnnct = getConnection();
+            String preQueryStatement = "UPDATE student SET password=? ,firstName=?, lastName=?, class=? WHERE studentId=?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, st.getPw());         
+            pStmnt.setString(2, st.getFirstName());
+            pStmnt.setString(3, st.getLastName());
+            pStmnt.setString(4, st.getStudentClass());
+            pStmnt.setString(5, st.getId());
+            //Statement s = cnnct.createStatement();
+            int rs = pStmnt.executeUpdate();
+            return rs;
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pStmnt != null) {
+                try {
+                    pStmnt.close();
+                } catch (SQLException e) {
+                }
+            }
+            if (cnnct != null) {
+                try {
+                    cnnct.close();
+                } catch (SQLException sqlEx) {
+                }
+            }
+        }
+        return 0;
+    }
+    
     public boolean delStudent(String id){
         Connection cnnct = null;
         PreparedStatement pStmnt = null;

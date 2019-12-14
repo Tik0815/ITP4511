@@ -28,7 +28,7 @@
                         out.println("<td>" + t.getPhone() + "</td>");
                         out.println("<td>" + t.getEmail() + "</td>");
                         out.println("<td><a href=\"UpdateDeleteTeacher?action=delete&id=" + t.getId() + "\">delete</a></td>");
-                        //out.println("<td><a href=\"handleCustomer?action=getEditCustomer&id=" + c.getCustId() + "\">edit</a></td>");
+                        out.println("<td><a href=\"UpdateDeleteTeacher?action=getEdit&id=" + t.getId() + "\">edit</a></td>");
                         out.println("</tr>");
                     }
                     out.println("</table>");

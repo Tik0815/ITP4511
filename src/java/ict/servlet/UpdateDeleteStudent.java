@@ -58,24 +58,30 @@ public class UpdateDeleteStudent extends HttpServlet {
                     studentDB.delStudent(id);
                     response.sendRedirect("UpdateDeleteStudent?action=list");
                 }
-            }else if("getEditCustomer".equalsIgnoreCase(action)){
+            } else if("getEdit".equalsIgnoreCase(action)){
                 String id = request.getParameter("id");
-                if (id != null) {
-                    out.print("adc");
-                    // call  query db to get retrieve for a customer with the given id
-                    
-                    //ArrayList<CustomerBean> customer = db.queryCustById(id);
-                    
-                    // set the customer as attribute in request scope
-                    //request.setAttribute("cus", customer);
-                                        
-                    // forward the result to the editCustomer.jsp   
+                if (id != null) {                
+                    StudentBean student = studentDB.queryStudentById(id);                                       
                     RequestDispatcher rd;
-                    rd = getServletContext().getRequestDispatcher("/editCustomer.jsp");
-                    rd.forward(request, response);
-                    
+                    rd = getServletContext().getRequestDispatcher("/editStudent.jsp");
+                    request.setAttribute("stu", student);
+                    rd.forward(request, response);                   
                 }    
-
+            }else if ("edit".equalsIgnoreCase(action)) { 
+                String id = request.getParameter("studentID");                
+                String pw = request.getParameter("studentPW");
+                String fname = request.getParameter("studentFname");
+                String lname = request.getParameter("studentLname");
+                String studentClass = request.getParameter("studentClass");
+                StudentBean s = studentDB.queryStudentById(id);              
+                s.setId(id);
+                s.setPw(pw);
+                s.setFirstName(fname);
+                s.setLastName(lname);
+                s.setStudentClass(studentClass);
+                studentDB.editStudent(s);                
+              response.sendRedirect("UpdateDeleteStudent?action=list");
+             
             }else{
                 
                 out.println("No such action!!!");

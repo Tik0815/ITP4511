@@ -12,7 +12,7 @@
         <jsp:include page="header.jsp" />
          <%
                     ArrayList<StudentBean> students = (ArrayList<StudentBean> )request.getAttribute("students");
-                    out.println("<h1>Teacher Information</h1>");
+                    out.println("<h1>Student Information</h1>");
                     out.println("<table border='1'               >");
                     out.println("<tr>");
                     out.println("<th>Student ID</th><th>Password</th><th>First Name</th ><th>Last Name</th ><th>Class</th >");
@@ -26,7 +26,7 @@
                         out.println("<td>" + s.getLastName() + "</td>");
                         out.println("<td>" + s.getStudentClass() + "</td>");
                         out.println("<td><a href=\"UpdateDeleteStudent?action=delete&id=" + s.getId() + "\">delete</a></td>");
-                        //out.println("<td><a href=\"handleCustomer?action=getEditCustomer&id=" + c.getCustId() + "\">edit</a></td>");
+                        out.println("<td><a href=\"UpdateDeleteStudent?action=getEdit&id=" + s.getId() + "\">edit</a></td>");
                         out.println("</tr>");
 
                     }
