@@ -10,6 +10,8 @@
             <a href="UpdateDeleteAdmin?action=list"/>Modify Administrator</a><br/>
             <a href="UpdateDeleteStudent?action=list"/>Modify Student</a><br/>
             <a href="UpdateDeleteTeacher?action=list"/>Modify Teacher</a><br/>
+            <hr>
+            <a href="administrator.jsp">Back</a><br/>
         <jsp:include page="footer.jsp" />       
     </body>
 </html>

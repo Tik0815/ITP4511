@@ -18,6 +18,8 @@
             Email Address: <input type="email" name="teacherEmail"><br>
             <input type="submit" value="Create New Teacher"><br>
         </form>
+        <hr>
+        <a href="create.jsp">Back</a><br/>
         <jsp:include page="footer.jsp" />
     </body>
 </html>

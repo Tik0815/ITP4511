@@ -17,6 +17,8 @@
             LastName: <input type="text" name="adminLname" value="<%=adm.getLastName()%>"><br>
             <input type="submit" value="Edit Administrator"><br>
         </form>
+        <hr>
+        <a href="UpdateDeleteAdmin?action=list">Back</a><br/>
         <jsp:include page="footer.jsp" />
     </body>
 </html>

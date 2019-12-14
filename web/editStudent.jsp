@@ -17,6 +17,8 @@
             Class: <input type="text" name="studentClass" value="<%=stu.getStudentClass()%>"><br>
             <input type="submit" value="Edit Student"><br>
         </form>
+        <hr>
+        <a href="UpdateDeleteStudent?action=list">Back</a><br/>
         <jsp:include page="footer.jsp" />
     </body>
 </html>

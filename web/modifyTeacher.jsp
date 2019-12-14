@@ -10,7 +10,7 @@
     </head>
     <body>
         <jsp:include page="header.jsp" />
-         <%
+        <%
                     ArrayList<TeacherBean> teachers = (ArrayList<TeacherBean> )request.getAttribute("teachers");
                     out.println("<h1>Teacher Information</h1>");
                     out.println("<table border='1'               >");
@@ -32,7 +32,10 @@
                         out.println("</tr>");
                     }
                     out.println("</table>");
-%>
+        %>
+        <hr>
+        <jsp:useBean id="userInfo" class="ict.bean.UserInfo" scope="session"/>
+        <a href="AccountController?action=modify&user=<jsp:getProperty name="userInfo" property="username"/>" >Back</a><br/>
         <jsp:include page="footer.jsp" />
     </body>
 </html>

@@ -19,6 +19,8 @@
             Email Address: <input type="email" name="teacherEmail" value="<%=tea.getEmail()%>"><br>
             <input type="submit" value="Edit Teacher"><br>
         </form>
+        <hr>
+        <a href="UpdateDeleteTeacher?action=list">Back</a><br/>
         <jsp:include page="footer.jsp" />
     </body>
 </html>

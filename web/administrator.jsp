@@ -24,7 +24,7 @@
         <a href="AccountController?action=role&user=<jsp:getProperty name="userInfo" property="username"/>" >Manage the user role</a><br/>
         <hr>
         
-        <form method="post" action ="main">
+        <form method="post" action ="login.jsp">
             <input type="hidden" name="action" value="logout">
             <input type="submit" value="Logout" name="logoutButton">
         </form>

@@ -16,6 +16,8 @@
             Class: <input type="text" name="studentClass"><br>
             <input type="submit" value="Create New Student"><br>
         </form>
+        <hr>
+        <a href="create.jsp">Back</a><br/>
         <jsp:include page="footer.jsp" />
     </body>
 </html>

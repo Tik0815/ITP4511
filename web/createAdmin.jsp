@@ -16,6 +16,8 @@
             LastName: <input type="text" name="adminLname"><br>
             <input type="submit" value="Create New Administrator"><br>
         </form>
+        <hr>
+        <a href="create.jsp">Back</a><br/>
         <jsp:include page="footer.jsp" />
     </body>
 </html>
