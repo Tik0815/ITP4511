@@ -29,15 +29,22 @@ public class SubjectController extends HttpServlet {
    String action = request.getParameter("action");
    String user = request.getParameter("user"); 
    if ("list".equalsIgnoreCase(action)) {
-     ArrayList subjects = subjectDb.getSubjects(user);
-     request.setAttribute("user", user);
-     request.setAttribute("subjects", subjects);
-     RequestDispatcher rd = this.getServletContext()
-      .getRequestDispatcher("/subject.jsp");
-     rd.forward(request, response);         
-   }  else{
+        ArrayList subjects = subjectDb.getSubjects(user, "stu");
+        request.setAttribute("user", user);
+        request.setAttribute("subjects", subjects);
+        RequestDispatcher rd = this.getServletContext()
+         .getRequestDispatcher("/subject.jsp");
+        rd.forward(request, response);         
+   }else if("teacherList".equalsIgnoreCase(action)){
+        ArrayList subjects = subjectDb.getSubjects(user, "tea");
+        request.setAttribute("subjects", subjects);
+        RequestDispatcher rd = this.getServletContext()
+         .getRequestDispatcher("/teacherSubject.jsp");
+        rd.forward(request, response);     
+   }else{
         PrintWriter out = response.getWriter();
          out.println("NO such action :" +action);
    }
   }
+  
 }

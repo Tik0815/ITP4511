@@ -40,12 +40,16 @@ public class SubjectDB {
 //        subjects.add(new Brand("IPHONE"));
 //        subjects.add(new Brand("SAMSUNG"));
 //    }
-    public ArrayList getSubjects(String user) {
+    public ArrayList getSubjects(String user, String type) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
         subjects.clear();
         try{
-            String preQueryStatement = "SELECT * FROM STUDENT_HAS_SUBJECT WHERE studentId=?";
+            String preQueryStatement = null;
+            if(type == "stu")
+                preQueryStatement = "SELECT * FROM STUDENT_HAS_SUBJECT WHERE studentId=?";
+            else if(type == "tea")
+                preQueryStatement = "SELECT * FROM TEACHER_HAS_SUBJECT WHERE teacherId=?";
             cnnct = getConnection();
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             pStmnt.setString(1, user);

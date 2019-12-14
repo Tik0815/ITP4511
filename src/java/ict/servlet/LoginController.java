@@ -6,6 +6,7 @@
 package ict.servlet;
 
 import ict.bean.Student;
+import ict.bean.Teacher;
 import ict.bean.UserInfo;
 import ict.db.UserDB;
 import java.io.IOException;
@@ -139,11 +140,17 @@ public class LoginController extends HttpServlet {
                 targetURL = "student.jsp";
                 Student stuBean = db.queryStudentById(username);
                 stuBean.setInfo(bean);
-                request.setAttribute("studentBean", stuBean);
+                session.setAttribute("studentBean", stuBean);
             }else if(type.equals("teacher")){
                 targetURL = "teacher.jsp";
+                Teacher teaBean = db.queryTeacherById(username);
+                teaBean.setInfo(bean);
+                session.setAttribute("teacherBean", teaBean);
             }else if(type.equals("admin")){
                 targetURL = "administrator.jsp";
+//                Student stuBean = db.queryStudentById(username);
+//                stuBean.setInfo(bean);
+//                session.setAttribute("studentBean", stuBean);
             }
             
         }else{
@@ -178,6 +185,9 @@ public class LoginController extends HttpServlet {
         HttpSession session = request.getSession(false);
         if(session != null){
             session.removeAttribute("userInfo");
+            session.removeAttribute("studentBean");
+            session.removeAttribute("teacherBean");
+            session.removeAttribute("adminBean");
             session.invalidate();
         }
         doLogin(request, response);
