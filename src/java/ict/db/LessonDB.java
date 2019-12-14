@@ -51,7 +51,9 @@ public class LessonDB {
             cnnct = getConnection();
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             //pStmnt.setString(1, user);
+            
             pStmnt.setString(1, user);
+            
             System.out.println(pStmnt);
             ResultSet rs = null;
                 rs = pStmnt.executeQuery();

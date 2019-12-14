@@ -28,7 +28,7 @@ public class AccountController extends HttpServlet {
    String action = request.getParameter("action");
    String user = request.getParameter("user"); 
    if ("list".equalsIgnoreCase(action)) {
-     ArrayList subjects = subjectDb.getSubjects(user);
+     //ArrayList subjects = subjectDb.getSubjects(user);
      request.setAttribute("user", user);
      request.setAttribute("subjects", subjects);
      RequestDispatcher rd = this.getServletContext()

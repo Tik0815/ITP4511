@@ -22,7 +22,7 @@
         <jsp:getProperty name="teacherBean" property="lastName" />
         
         <p></p>
-        <a href="SubjectController?action=teacherlist&user=<jsp:getProperty name="teacherBean" property="userId"/>" >Show Subject</a><br/>
+        <a href="SubjectController?action=teacherList&user=<jsp:getProperty name="teacherBean" property="userId"/>" >Show Subject</a><br/>
         
         <form method="post" action ="main">
             <input type="hidden" name="action" value="logout">
