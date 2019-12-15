@@ -74,7 +74,7 @@ public class AttendanceController extends HttpServlet {
              request.setAttribute("studentsAttendance", studentsAttendance);
              request.setAttribute("lesson", lesson);
              RequestDispatcher rd;
-            rd = getServletContext().getRequestDispatcher("/test.jsp");
+            rd = getServletContext().getRequestDispatcher("/checkAttendance.jsp");
             rd.forward(request, response);               
         }  else{
              PrintWriter out = response.getWriter();
