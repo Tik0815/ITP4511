@@ -116,6 +116,7 @@ public class LessonDB {
                     String lessonId = rs.getString("lessonId");
                     String stuClass = rs.getString("class");
                     Lesson lesson = new Lesson(lessonId, date, stuClass);
+                    lesson.setSubjectId(rs.getString("subjectId"));
                     lessons.add(lesson);
                         
                 } 
@@ -147,7 +148,9 @@ public class LessonDB {
                     String date = rs.getString("date");
                     String lessonId = rs.getString("lessonId");
                     String stuClass = rs.getString("class");
+                    
                     lesson = new Lesson(lessonId, date, stuClass);
+                    lesson.setSubjectId(rs.getString("subjectId"));
                         
                 } 
         }catch(SQLException ex){
@@ -159,6 +162,51 @@ public class LessonDB {
             ex.printStackTrace();
         }    
         return lesson;
+    }
+    public boolean createLesson(String user, String subject, String date, String lessonId, String stuClass) {
+       Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+        try{
+            cnnct = getConnection();
+            String preQueryStatement = "INSERT INTO Lesson VALUES (?,?,?,?,?)";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, lessonId);
+            pStmnt.setString(2, date);
+            pStmnt.setString(3, user);
+            pStmnt.setString(4, subject);
+            pStmnt.setString(5, stuClass);
+            int rowCount = pStmnt.executeUpdate();
+            if(rowCount >= 1){
+                isSuccess = true;
+            }
+            String preQueryStatement_studentInClass = "SELECT * FROM Student WHERE class=?";
+            PreparedStatement pStmnt_studentInClass = cnnct.prepareStatement(preQueryStatement_studentInClass);
+            pStmnt_studentInClass.setString(1, stuClass);
+                    
+            ResultSet rs = pStmnt_studentInClass.executeQuery();
+            while(rs.next()){
+                String stuId = rs.getString("studentId");
+                String preQueryStatement_addAttend = "INSERT INTO Attendance VALUES (?,?,?)";
+                PreparedStatement pStmnt_addAttend = cnnct.prepareStatement(preQueryStatement_addAttend);
+                pStmnt_addAttend.setString(1, lessonId);
+                pStmnt_addAttend.setString(2, stuId);
+                pStmnt_addAttend.setBoolean(3, Boolean.FALSE);
+                pStmnt_addAttend.executeUpdate();
+            }
+            pStmnt.close();
+            cnnct.close();
+            
+        }catch(SQLException ex){
+            while(ex != null){
+                ex.printStackTrace();
+                ex = ex.getNextException();
+                
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        return isSuccess;
     }
   }
 

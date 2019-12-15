@@ -105,6 +105,40 @@ public class LessonController extends HttpServlet {
             RequestDispatcher rd;
             rd = getServletContext().getRequestDispatcher("/teacherLesson.jsp");
             rd.forward(request, response);
+        }else if("requestAdd".equalsIgnoreCase(action)) {
+            String teacherId = null;
+            String subject = null;
+            
+            Teacher teaBean = (Teacher) request.getSession().getAttribute("teacherBean");
+            teacherId = teaBean.getUserId();
+            subject = request.getParameter("subject");
+            request.setAttribute("subject", subject);
+            request.setAttribute("user", teacherId);
+            RequestDispatcher rd;
+            rd = getServletContext().getRequestDispatcher("/createLesson.jsp");
+            rd.forward(request, response);
+            
+        }else if("add".equalsIgnoreCase(action)) {
+            String teacherId = null;
+            String subject = null;
+            String date = null;
+            String lessonId = null;
+            String stuClass = null;
+            teacherId = request.getParameter("user");
+            subject = request.getParameter("subject");
+            date = request.getParameter("date");
+            lessonId = request.getParameter("lessonId");
+            stuClass = request.getParameter("stuClass");
+            if(!lessonDb.createLesson(teacherId, subject, date, lessonId, stuClass))
+                System.out.println("false");
+            Teacher teaBean = (Teacher) request.getSession().getAttribute("teacherBean");
+            teacherId = teaBean.getUserId();
+            subject = request.getParameter("subject");
+            request.setAttribute("subject", subject);
+            request.setAttribute("user", teacherId);
+            RequestDispatcher rd;
+            rd = getServletContext().getRequestDispatcher("/createLesson.jsp");
+            rd.forward(request, response);
         }
     }
 

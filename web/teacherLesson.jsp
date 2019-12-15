@@ -41,10 +41,14 @@
                         out.println("<td>" + l.getDate() + "</td>");
                         out.println("<td> <button onclick=\"window.location.href='/AttendanceController?action=list&id=" + l.getId() + "'\">Check</button>" );
                         out.println("</tr>");
-
+                              
                     }
                     out.println("</table>");
-%> 
+                    out.println("<a href=\"getLessons?action=requestAdd&user=" +teacherBean.getUserId()+"&subject=" + request.getAttribute("subject") + "\">Create Lesson</a>");
+                    out.println("<p/>");
+                    out.println("<a href=\"teacher.jsp\">Back Menu</a>");
+%>      
+        
         <jsp:include page="footer.jsp" />
     </body>
 </html>

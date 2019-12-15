@@ -81,4 +81,56 @@ public class AttendanceDB {
 //        subjects.add(new Brand("SAMSUNG"));
         return this.students;
     } 
+    public void modifyStudentAttendance(String lessonId, String stuId, Boolean isAttend){
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        try{
+            String preQueryStatement = null;
+            preQueryStatement = "UPDATE Attendance SET isAttend=? WHERE lessonId=? AND studentId=?";
+            cnnct = getConnection();
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setBoolean(1, false);
+            if(isAttend == Boolean.TRUE)
+                pStmnt.setBoolean(1, true);
+            pStmnt.setString(2, lessonId);
+            pStmnt.setString(3, stuId);
+            System.out.println(pStmnt);
+            ResultSet rs = null;
+            pStmnt.executeUpdate();
+        }catch(SQLException ex){
+            while(ex != null){
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        } 
+    } 
+    public int getLessonStudentNo(String lessonId){
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        students.clear();
+            int number = 0;
+        try{
+            String preQueryStatement = null;
+            preQueryStatement = "SELECT COUNT(*) FROM Attendance WHERE lessonId=?";
+            cnnct = getConnection();
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, lessonId);
+            ResultSet rs = null;
+                rs = pStmnt.executeQuery();
+                if(rs.next()){
+                    number = rs.getInt(1);
+                }
+        }catch(SQLException ex){
+            while(ex != null){
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        } 
+        
+            return number;
+    }
   }

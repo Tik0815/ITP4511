@@ -7,6 +7,7 @@ public class Lesson implements Serializable{
     private String id;
     private String date;
     private String stuClass;
+    private String subjectId;
     public Lesson(String id, String date, String stuClass) {
         this.id = id;
         this.date = date;
@@ -18,10 +19,16 @@ public class Lesson implements Serializable{
     
     public String getId(){
       return id;
-   }
-   public void setId(String id){
-       this.id = id;
-   }
+    }
+    public void setId(String id){
+        this.id = id;
+    }
+    public String getSubjectId(){
+      return subjectId;
+    }
+    public void setSubjectId(String subjectId){
+        this.subjectId = subjectId;
+    }
     public String getDate(){
         return date;
     }

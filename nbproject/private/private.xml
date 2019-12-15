@@ -3,41 +3,47 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/web/administrator.jsp</file>
-            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/servlet/LessonController.java</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/web/teacherSubject.jsp</file>
+            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/servlet/LessonController.java</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/servlet/AccountController.java</file>
-            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/bean/Attendance.java</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/db/BrandDB.java</file>
+            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/bean/Attendance.java</file>
+            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/db/TeacherDB.java</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/bean/UserInfo.java</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/web/lesson.jsp</file>
+            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/servlet/UpdateDeleteAdmin.java</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/bean/Phone.java</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/bean/Lesson.java</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/bean/Administrator.java</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/web/teacher.jsp</file>
+            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/servlet/CreateController.java</file>
+            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/servlet/UpdateDeleteTeacher.java</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/web/login.jsp</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/web/student.jsp</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/db/LessonDB.java</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/db/SubjectDB.java</file>
+            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/db/AttendanceDB.java</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/servlet/BrandController.java</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/web/subject.jsp</file>
+            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/servlet/AttendanceController.java</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/servlet/SubjectController.java</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/web/header.jsp</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/web/footer.jsp</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/servlet/LoginController.java</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/bean/Subject.java</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/bean/Teacher.java</file>
+            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/web/checkAttendance.jsp</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/bean/Student.java</file>
+            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/db/StudentDB.java</file>
+            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/web/teacherLesson.jsp</file>
+            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/web/create.jsp</file>
+            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/servlet/UpdateDeleteStudent.java</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/web/loginError.jsp</file>
-            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/db/UserDB.java</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/servlet/PhoneController.java</file>
+            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/db/UserDB.java</file>
+            <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/bean/TeacherBean.java</file>
             <file>file:/Users/Tik0815/Documents/GitHub/ITP4511/src/java/ict/bean/Brand.java</file>
-=======
-            <file>file:/C:/Users/user/Documents/GitHub/ITP4511/web/editAdmin.jsp</file>
-            <file>file:/C:/Users/user/Documents/GitHub/ITP4511/src/java/ict/db/AdminDB.java</file>
-            <file>file:/C:/Users/user/Documents/GitHub/ITP4511/src/java/ict/servlet/UpdateDeleteAdmin.java</file>
->>>>>>> 273974d48309b4ffe91f468c01fc5fde40ab485f
         </group>
     </open-files>
 </project-private>

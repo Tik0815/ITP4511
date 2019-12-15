@@ -10,6 +10,7 @@ import ict.bean.Teacher;
 import ict.bean.Student;
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
 /**
  *
  * @author Tik0815
@@ -189,5 +190,58 @@ public class UserDB {
             ex.printStackTrace();
         }
         return teaBean;
+    }
+    public ArrayList<Student> queryStudentsByClass(String stuClass){
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        ArrayList<Student> students = new ArrayList<Student>();
+        Student stuBean = null;
+        try{
+            cnnct = getConnection();
+            String preQueryStatement = "SELECT * FROM Student WHERE class=?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, stuClass);
+            ResultSet rs = null;
+            rs = pStmnt.executeQuery();
+            while(rs.next()){
+                stuBean = new Student();
+                stuBean.setId(rs.getString("studentId"));
+                stuBean.setFirstName(rs.getString("firstName"));
+                stuBean.setLastName(rs.getString("lastName"));
+                stuBean.setStudentClass(rs.getString("class"));
+                students.add(stuBean);
+            }
+        }catch(SQLException ex){
+            while(ex != null){
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        return students;
+    }
+    public ArrayList getClasses(){
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        ArrayList classes = new ArrayList();
+        try{
+            cnnct = getConnection();
+            String preQueryStatement = "SELECT DISTINCT class FROM Student";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            ResultSet rs = null;
+            rs = pStmnt.executeQuery();
+            while(rs.next()){
+                classes.add(rs.getString(1));
+            }
+        }catch(SQLException ex){
+            while(ex != null){
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        return classes;
     }
 }
